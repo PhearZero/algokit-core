@@ -4,13 +4,15 @@ version = "0.1.0"
 edition = "2024"
 
 [features]
-default = ["default_client"]
+default = ["default_client", "native-tls"]
 ffi_uniffi = ["dep:uniffi"]
 default_client = ["dep:reqwest"]
+native-tls = ["reqwest/native-tls"]
+rustls = ["reqwest/rustls-tls"]
 
 [dependencies]
 async-trait = "0.1.88"
-reqwest = { version = "0.12.19", optional = true }
+reqwest = { version = "0.12.19", optional = true, default-features = false, features = ["json"] }
 serde = { version = "1.0", features = ["derive"] }
 snafu = { workspace = true }
 uniffi = { workspace = true, optional = true }
